@@ -8,4 +8,5 @@ class Balance extends Model
 {
     //Incluir variável abaixo para definir o nome da tabela do banco se a mesma tiver nome diferente da Migration/Model
     //private $table = "balance";
+    public $timestamps = false;
 }
