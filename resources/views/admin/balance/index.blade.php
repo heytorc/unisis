@@ -19,7 +19,7 @@
                 <div class="inner">
                 <p></p>
                 
-                <h3>R$ 100,00</h3>
+                <h3>R$ {{ number_format($amount,2,',','.') }}</h3>
 
                 <p>&nbsp;</p>
                 </div>
@@ -28,6 +28,7 @@
                 </div>
                 <div class="text-center"><button class="btn btn-primary btn-block btn-sm">Recarregar <i class="fa fa-shopping-cart"></i></button></div>
                 <div class="text-center"><button class="btn btn-danger btn-block btn-sm">Sacar <i class="fa fa-shopping-cart"></i></button></div>
+                <div class="text-center"><button class="btn btn-warning btn-block btn-sm">Histórico <i class="fa fa-history"></i></button></div>
             </div>
         </div>
     </div>
