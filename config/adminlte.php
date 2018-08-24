@@ -108,7 +108,7 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'MENU',
         [
             'text' => 'Dashboard',
             'url'  => 'admin',
@@ -129,6 +129,11 @@ return [
                     'icon'  => 'history'
                 ]
             ]
+        ],
+        [
+            'text' => 'Minha conta',
+            'url'  => 'admin/account',
+            'icon'  => 'user'
         ]
     ],
 
