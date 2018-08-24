@@ -17,19 +17,20 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Transferência</h3>
+                    <h3 class="box-title">Pra quem deseja transferir?</h3>
                 </div>
                 <div class="box-body">
 
                     @include('admin.includes.alerts')
 
-                    <form action="{{ route('withdraw.store') }}" method="POST">
+                    <form action="{{ route('confirm.transfer') }}" method="POST">
                         {!! csrf_field() !!}
 
                         <div class="form-group">
-                            <input type="text" name="valor" class="form-control" placeholder="Digite o valor da saque..." />
+                            <input type="text" name="nmUsuarioDestino" class="form-control" placeholder="Digite o nome do usuário que deseja depositar..." />
                         </div>
-                        <button type="submit" class="btn btn-success">Transferir</button>
+
+                        <button type="submit" class="btn btn-success"><i class="fa fa-chevron-right"></i> Proxima Etapa</button>
                     </form>
                 </div> 
             </div>
