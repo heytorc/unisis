@@ -64,7 +64,7 @@ class Balance extends Model
         DB::beginTransaction();
 
         $totalBefore    = $this->amount ? $this->amount : 0;
-        $this->amount   -= $value;    
+        $this->amount   -= $value;  
         $withdraw       = $this->save();
 
         //auth -> objeto com os dados da sessão
@@ -78,7 +78,7 @@ class Balance extends Model
             'date'          => date('Ymd')
         ]);
         
-        //Se consguir inserir o deposito e o histórico commita as alterações, se não, dá um rollback
+        //Se conseguir inserir o saque e o histórico commita as alterações, se não, dá um rollback
         if ($withdraw && $historic){
 
             DB::commit();

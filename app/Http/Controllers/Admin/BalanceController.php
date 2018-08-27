@@ -48,6 +48,23 @@ class BalanceController extends Controller
         return view('admin.balance.withdraw');
     }
 
+    public function withdrawStore(MoneyValidationFormRequest $request)
+    {
+        $valorRetirada = floatval($request->input('valor'));
+
+        $balance    = auth()->user()->balance()->firstOrCreate([]);
+        $response   = $balance->withdraw($valorRetirada);
+
+        if ($response['success'])
+            return redirect()
+                        ->route('admin.balance')
+                        ->with('success', $response['message']);
+        
+        return redirect()
+                    ->back()
+                    ->with('error', $response['message']);
+    }
+
     public function confirmTransfer(Request $request, User $user)
     {   
         $sender = $user->getSender($request->nmUsuarioDestino);
