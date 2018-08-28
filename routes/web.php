@@ -28,6 +28,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 });
 
+$this->get('meu-perfil', 'Admin\\UserController@profile')->name('profile')->middleware('auth');
+$this->post('meu-perfil/atualizar', 'Admin\\UserController@profileUpdate')->name('profile.update')->middleware('auth');
+
 Route::get('/estoque', 'Estoque\\ProdutoController@index');
 
 Auth::routes();

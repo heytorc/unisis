@@ -14,15 +14,22 @@ class BalanceController extends Controller
 
     private $totalPage = 5;
 
-    public function index()
+    public function index(Historic $historic)
     {
         //dd -> vardump
         //dd();
         
         $balance = auth()->user()->balance;
-        $amount = $balance ? $balance->amount : 0;  
+        $amount = $balance ? $balance->amount : 0;
 
-        return view("admin.balance.index", compact('amount'));
+        $historics = auth()->user()
+                            ->historics()
+                            ->with(['userSender'])
+                            ->paginate($this->totalPage);
+
+        $types = $historic->type();
+
+        return view("admin.balance.index", compact('amount', 'historics', 'types'));
     }
 
     public function deposit()
