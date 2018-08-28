@@ -43,7 +43,7 @@
 			<div class="text-center"><a href="{{ route('balance.transfer.confirmUser') }}" class="btn btn-info btn-block btn-sm"><i class="fa fa-exchange"></i> Transferir</a></div>
 			<br>
 			@endif
-			<div class="text-center"><a href="{{ route('balance.deposit') }}" class="btn btn-warning btn-block btn-sm"><i class="fa fa-history"></i> Histórico</a></div>
+			<div class="text-center"><a href="{{ route('admin.historic') }}" class="btn btn-warning btn-block btn-sm"><i class="fa fa-history"></i> Histórico</a></div>
 		</div>
 	</div>
 

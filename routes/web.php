@@ -19,7 +19,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     $this->get('transfer/confirm-user', 'BalanceController@confirmUsertransfer')->name("balance.transfer.confirmUser");
     $this->post('transfer/confirm-value', 'BalanceController@confirmValueTransfer')->name("balance.transfer.confirmValue");
     $this->post('transfer/transfer', 'BalanceController@storeTransfer')->name("balance.transfer");
-    // $this->post('transfer/store', 'BalanceController@storeTransfer')->name("store.transfer");
+
+    $this->get('historic', 'BalanceController@historic')->name('admin.historic');
+    $this->any('historic-search', 'BalanceController@searchHistorics')->name('historic.search');
 
 
     $this->get('account', 'AccountController@index')->name("admin.account");

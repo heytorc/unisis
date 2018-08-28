@@ -7,9 +7,13 @@ use App\Http\Requests\MoneyValidationFormRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Balance;
 use App\User;
+use App\Models\Historic;
 
 class BalanceController extends Controller
 {
+
+    private $totalPage = 5;
+
     public function index()
     {
         //dd -> vardump
@@ -89,7 +93,8 @@ class BalanceController extends Controller
 
     }
 
-    public function storeTransfer(MoneyValidationFormRequest $request, User $user){
+    public function storeTransfer(MoneyValidationFormRequest $request, User $user)
+    {
         
         if(!$sender = $user->find($request->cdUsuarioDestino))
             return redirect()
@@ -110,6 +115,31 @@ class BalanceController extends Controller
                     //->back()
                     ->route('balance.transfer.confirmUser')
                     ->with('error', $response['message']);
+
+    }
+
+    public function historic(Historic $historic){
+        
+        $historics = auth()->user()
+                            ->historics()
+                            ->with(['userSender'])
+                            ->paginate($this->totalPage);
+
+        $types = $historic->type();
+
+        return view('admin.balance.historics', compact('historics', 'types'));
+
+    }
+
+    public function searchHistorics(Request $request, Historic $historic)
+    {
+        $dataForm = $request->except('_token');
+
+        $historics = $historic->search($dataForm, $this->totalPage);
+
+        $types = $historic->type();
+
+        return view('admin.balance.historics', compact('historics', 'types', 'dataForm'));
 
     }
 }
