@@ -9,7 +9,7 @@ class AccountController extends Controller
 {
     public function index()
     {   
-        $uid = auth()->user()->id;
-        return view('admin.account.index', compact('uid'));
+        $user = auth()->user();
+        return view('admin.account.index', compact('user'));
     }
 }

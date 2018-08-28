@@ -23,7 +23,7 @@
 
                     @include('admin.includes.alerts')
 
-                    <form action="{{ route('confirm.transfer') }}" method="POST">
+                    <form action="{{ route('balance.transfer.confirmValue') }}" method="POST">
                         {!! csrf_field() !!}
 
                         <div class="form-group">

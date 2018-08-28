@@ -64,8 +64,13 @@ class BalanceController extends Controller
                     ->back()
                     ->with('error', $response['message']);
     }
+    
+    public function confirmUsertransfer()
+    {
+        return view('admin.balance.confirm-user-transfer');
+    }
 
-    public function confirmTransfer(Request $request, User $user)
+    public function confirmValueTransfer(Request $request, User $user)
     {   
         $sender = $user->getSender($request->nmUsuarioDestino);
         
@@ -79,17 +84,32 @@ class BalanceController extends Controller
                     ->back()
                     ->with('error', 'Você não pode transferir para você mesmo!');
         
-        return view('admin.balance.confirm-transfer', compact('sender'));
+        $balance = auth()->user()->balance;
+        return view('admin.balance.confirm-value-transfer', compact('sender', 'balance'));
 
     }
 
-    public function transfer()
-    {
-        return view('admin.balance.transfer');
-    }
+    public function storeTransfer(MoneyValidationFormRequest $request, User $user){
+        
+        if(!$sender = $user->find($request->cdUsuarioDestino))
+            return redirect()
+                        ->back()
+                        ->with('error', 'Usuário de destino não encontrado');
 
-    public function transferStore(MoneyValidationFormRequest $request)
-    {
-        dd($request->all());
+        $valorRetirada = floatval($request->input('valor'));
+
+        $balance    = auth()->user()->balance()->firstOrCreate([]);
+        $response   = $balance->transfer($valorRetirada, $sender);
+
+        if ($response['success'])
+            return redirect()
+                        ->route('admin.balance')
+                        ->with('success', $response['message']);
+        
+        return redirect()
+                    //->back()
+                    ->route('balance.transfer.confirmUser')
+                    ->with('error', $response['message']);
+
     }
 }

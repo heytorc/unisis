@@ -15,7 +15,7 @@
 	@include('admin.includes.alerts')
 	<div class="row">
 		<div class="col-md-9">
-			<div class="box">
+			<div class="box box-success">
 				<div class="box-header">
 				<h3 class="box-title"><i class="fa fa-history"></i> &nbsp;Histórico de Movimentação</h3>
 				</div>
@@ -40,7 +40,7 @@
 			@if ($amount > 0)
 			<div class="text-center"><a href="{{ route('balance.withdraw') }}" class="btn btn-danger btn-block btn-sm"><i class="fa fa-shopping-cart"></i> Sacar</a></div>
 			<br>
-			<div class="text-center"><a href="{{ route('balance.transfer') }}" class="btn btn-info btn-block btn-sm"><i class="fa fa-exchange"></i> Transferir</a></div>
+			<div class="text-center"><a href="{{ route('balance.transfer.confirmUser') }}" class="btn btn-info btn-block btn-sm"><i class="fa fa-exchange"></i> Transferir</a></div>
 			<br>
 			@endif
 			<div class="text-center"><a href="{{ route('balance.deposit') }}" class="btn btn-warning btn-block btn-sm"><i class="fa fa-history"></i> Histórico</a></div>

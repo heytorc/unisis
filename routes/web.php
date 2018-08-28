@@ -16,9 +16,11 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     $this->get('withdraw', 'BalanceController@withdraw')->name("balance.withdraw");
     $this->post('withdraw', 'BalanceController@withdrawStore')->name("store.withdraw");
     
-    $this->get('transfer', 'BalanceController@transfer')->name("balance.transfer");
-    $this->post('confirm-transfer', 'BalanceController@confirmTransfer')->name("confirm.transfer");
-    $this->post('transfer', 'BalanceController@transferStore')->name("store.transfer");
+    $this->get('transfer/confirm-user', 'BalanceController@confirmUsertransfer')->name("balance.transfer.confirmUser");
+    $this->post('transfer/confirm-value', 'BalanceController@confirmValueTransfer')->name("balance.transfer.confirmValue");
+    $this->post('transfer/transfer', 'BalanceController@storeTransfer')->name("balance.transfer");
+    // $this->post('transfer/store', 'BalanceController@storeTransfer')->name("store.transfer");
+
 
     $this->get('account', 'AccountController@index')->name("admin.account");
 
